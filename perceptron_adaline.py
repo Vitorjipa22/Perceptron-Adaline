@@ -61,7 +61,7 @@ class perceptron:
     sys = pd.DataFrame(self.__sys, columns = columns)
 
     plt.figure(figsize = (15,7))
-    plt.title('Valor dos pesos ao decorrer das modificações.')
+    plt.title('Valor dos pesos ao decorrer das modificações - Peceptron.')
 
     for i in range(self.__n_features + 1):
       plt.plot(np.arange(0,len(self.__sys)), sys[columns[i]], label=columns[i])
@@ -139,7 +139,7 @@ class adaline(perceptron):
     sys = pd.DataFrame(self.__sys, columns = columns)
 
     plt.figure(figsize = (15,7))
-    plt.title('Valor dos pesos ao decorrer das modificações.')
+    plt.title('Valor dos pesos ao decorrer das modificações - Adaline.')
 
     for i in range(self.__n_features + 1):
       plt.plot(np.arange(0,len(self.__sys)), sys[columns[i]], label=columns[i])
@@ -167,4 +167,3 @@ class adaline(perceptron):
   def W(self):
     return self.__W
   
-  print('okay')
