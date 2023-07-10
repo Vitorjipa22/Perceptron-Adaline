@@ -96,9 +96,9 @@ class adaline(perceptron):
     self.__n_features = n_features
     self.__lr = lr
     self.__epoch = 0
-    self.__erro = True
     self.__W = list()
     self.__sys = list()
+    self.__sys_EQM = list()
 
     for i in range(self.__n_features + 1):
       self.__W.append(random())
@@ -114,7 +114,7 @@ class adaline(perceptron):
       k = 0
       EQM_anterior = EQM
       EQM = 0
-
+      
       for amostra in X_train:
         u = sum(self.__W * amostra.T)
         EQM += ((y_train[k] - u) ** 2)
@@ -128,6 +128,7 @@ class adaline(perceptron):
       self.__epoch+=1
 
       EQM /= self.p
+      self.__sys_EQM.append(EQM)
 
       if abs(EQM - EQM_anterior) <= self.epsilon or (self.__epoch > 1000):
         break
@@ -145,6 +146,15 @@ class adaline(perceptron):
       plt.plot(np.arange(0,len(self.__sys)), sys[columns[i]], label=columns[i])
 
     plt.legend(loc = "upper right")
+    plt.show()
+
+    X = np.arange(0,len(self.__sys_EQM),1)
+
+    plt.figure(figsize = (15,7))
+    plt.title('EQM')
+
+    plt.plot(X, self.__sys_EQM)
+
     plt.show()
 
   def predict(self, X_val, activation_func = 'bipolar'):
